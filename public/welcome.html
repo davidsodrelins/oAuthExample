@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Inicio</title>
+</head>
+
+<body>
+ TESTE
+</body>
+<script>
+	const query = window.location.search.substring(1)
+	const token = query.split('access_token=')[1]
+
+	fetch('https://api.github.com/user', {
+			headers: {
+				Accept: "application/vnd.github.v3+json",
+				Authorization: 'token ' + token
+			}
+		})
+		.then(res => res.json())
+		.then(res => {
+			document.body.appendChild(document.createTextNode(`Olá!, ${res.name}`))
+		})
+</script>
+
+</html>
